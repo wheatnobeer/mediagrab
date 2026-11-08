@@ -1,0 +1,13 @@
+* text=auto eol=lf
+
+*.png binary
+*.jpg binary
+*.jpeg binary
+*.gif binary
+*.webp binary
+*.mp4 binary
+*.m4s binary
+*.m4a binary
+*.ts binary
+*.zip binary
+*.crx binary
