@@ -1,5 +1,6 @@
 # MediaGrab
 
+[![CI](https://github.com/wheatnobeer/mediagrab/actions/workflows/ci.yml/badge.svg)](https://github.com/wheatnobeer/mediagrab/actions/workflows/ci.yml)
 [中文说明](README.md) · [Changelog](CHANGELOG.md)
 
 A dependency-free Chrome Manifest V3 extension that detects HLS/MP4 media on the

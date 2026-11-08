@@ -1,5 +1,6 @@
 # MediaGrab · 网页视频下载器
 
+[![CI](https://github.com/wheatnobeer/mediagrab/actions/workflows/ci.yml/badge.svg)](https://github.com/wheatnobeer/mediagrab/actions/workflows/ci.yml)
 ![version](https://img.shields.io/badge/version-1.1.1-6c5ce7)
 ![license](https://img.shields.io/badge/license-MIT-green)
 ![manifest](https://img.shields.io/badge/Chrome-Manifest%20V3-4285F4)
@@ -47,8 +48,11 @@
 
 ### 从源码加载（推荐）
 
-1. 下载或 clone 本仓库
-2. 打开 `chrome://extensions`（Edge 为 `edge://extensions`）
+```bash
+git clone https://github.com/wheatnobeer/mediagrab.git
+```
+
+1. 打开 `chrome://extensions`（Edge 为 `edge://extensions`）
 3. 右上角开启 **开发者模式**
 4. 点击 **加载已解压的扩展程序**
 5. 选择仓库里的 **`extension`** 文件夹（里面直接有 `manifest.json`）
