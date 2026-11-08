@@ -1,0 +1,60 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <title>MediaGrab HLS 测试页</title>
+  <style>
+    body { margin: 0; background: #101017; color: #eee; font: 14px/1.5 system-ui, sans-serif; }
+    .wrap { max-width: 900px; margin: 0 auto; padding: 28px 20px; }
+    h1 { font-size: 18px; font-weight: 700; margin: 0 0 4px; }
+    p { color: #9a9aae; margin: 0 0 18px; }
+    video { width: 100%; border-radius: 12px; background: #000; display: block; }
+    .meta { display: flex; gap: 10px; margin-top: 12px; flex-wrap: wrap; }
+    .pill { background: #1e1e2a; border: 1px solid #2c2c3a; color: #b9b9cc; border-radius: 99px; padding: 4px 10px; font-size: 12px; }
+    a { color: #a78bfa; }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <h1>MediaGrab HLS 测试页</h1>
+    <p>当前流：<span id="src-label"></span></p>
+    <video id="video" controls autoplay muted playsinline></video>
+    <div class="meta">
+      <span class="pill">HLS.js</span>
+      <span class="pill" id="state">waiting</span>
+    </div>
+    <p style="margin-top:18px">切换测试流：
+      <a href="?src=stream/master.m3u8">master (720p/480p)</a> ·
+      <a href="?src=stream/aes/index.m3u8">AES-128</a> ·
+      <a href="?src=stream/fmp4/index.m3u8">fMP4</a> ·
+      <a href="?src=stream/720p/index.m3u8">720p only</a>
+    </p>
+  </div>
+  <script src="https://cdn.jsdelivr.net/npm/hls.js@1.5.20/dist/hls.min.js"></script>
+  <script>
+    const params = new URLSearchParams(location.search);
+    const src = params.get('src') || 'stream/master.m3u8';
+    document.getElementById('src-label').textContent = src;
+    const video = document.getElementById('video');
+    const stateEl = document.getElementById('state');
+
+    function setState(t) { stateEl.textContent = t; }
+
+    if (window.Hls && Hls.isSupported()) {
+      const hls = new Hls({ enableWorker: true });
+      hls.loadSource(src);
+      hls.attachMedia(video);
+      hls.on(Hls.Events.MANIFEST_PARSED, () => {
+        setState('manifest parsed');
+        video.play().catch(() => {});
+      });
+      hls.on(Hls.Events.ERROR, (_e, data) => {
+        if (data && data.fatal) setState('error: ' + data.type);
+      });
+    } else {
+      video.src = src;
+      setState('native');
+    }
+  </script>
+</body>
+</html>

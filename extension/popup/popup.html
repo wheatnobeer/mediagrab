@@ -1,0 +1,89 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>网页视频下载器</title>
+  <link rel="stylesheet" href="popup.css">
+</head>
+<body>
+  <div class="app">
+    <header class="header">
+      <div class="brand">
+        <img class="brand-icon" src="../icons/icon32.png" alt="">
+        <div class="brand-text">
+          <div class="brand-name">网页视频下载器</div>
+          <div class="brand-sub">MediaGrab</div>
+        </div>
+      </div>
+      <button id="refresh" class="icon-btn" title="重新扫描当前页面" aria-label="重新扫描">
+        <svg viewBox="0 0 24 24" width="17" height="17" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M21 12a9 9 0 1 1-2.64-6.36"></path><polyline points="21 3 21 9 15 9"></polyline>
+        </svg>
+      </button>
+    </header>
+
+    <div id="page-card" class="page-card">
+      <img id="favicon" class="favicon" alt="">
+      <div class="page-info">
+        <div id="page-title" class="page-title">正在读取页面…</div>
+        <div id="page-url" class="page-url"></div>
+      </div>
+    </div>
+
+    <div id="drm-banner" class="banner danger hidden">
+      <span class="banner-icon">!</span>
+      <div class="banner-body">
+        <strong>检测到 DRM 版权保护</strong>
+        <p id="drm-text">该视频受数字版权保护，本插件不会绕过 DRM，因此无法下载。</p>
+      </div>
+    </div>
+
+    <div id="hint-banner" class="banner info hidden">
+      <span class="banner-icon">i</span>
+      <div class="banner-body">
+        <strong>没有检测到媒体</strong>
+        <p>请先在页面中开始播放。若刚安装插件，刷新一次页面后再试。</p>
+      </div>
+    </div>
+
+    <section class="section">
+      <div class="section-head">
+        <h2>检测到的视频</h2>
+        <span id="stream-count" class="count"></span>
+      </div>
+      <div id="streams" class="stack"></div>
+
+      <div id="empty" class="empty">
+        <div class="empty-art">
+          <svg viewBox="0 0 48 48" width="44" height="44" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+            <rect x="6" y="9" width="36" height="26" rx="6"></rect>
+            <path d="M18 18l10 5-10 5z" fill="currentColor" stroke="none"></path>
+            <path d="M16 41h16"></path>
+          </svg>
+        </div>
+        <p class="empty-title">还没有发现视频</p>
+        <p class="empty-sub">开始播放后，HLS / MP4 流会自动出现在这里。<br>页面已经打开？点下方重新扫描。</p>
+        <button id="rescan" class="btn ghost">重新扫描</button>
+      </div>
+    </section>
+
+    <section id="jobs-section" class="section hidden">
+      <div class="section-head">
+        <h2>下载任务</h2>
+        <button id="clear-done" class="link">清除已结束</button>
+      </div>
+      <div id="jobs" class="stack"></div>
+    </section>
+
+    <footer class="footer">
+      <span>仅支持未加密的 HTML5 视频</span>
+      <span class="dot"></span>
+      <span>请遵守版权与网站条款</span>
+    </footer>
+  </div>
+
+  <div id="toast" class="toast hidden"></div>
+  <script src="popup.js"></script>
+</body>
+</html>

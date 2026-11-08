@@ -1,0 +1,29 @@
+# Build output
+dist/
+*.zip
+*.crx
+*.pem
+
+# Local test fixtures / runs
+test/stream/
+test/out/
+test/downloads/
+test/hls.min.js
+test/*.log
+test/.bidi-profile/
+test/.chrome-profile/
+test/.probe-*/
+test/.ql-profile/
+test/.tmp/
+test/pack*/
+
+# Screenshots produced by E2E
+test/popup-*.png
+
+# OS / editor
+.DS_Store
+Thumbs.db
+desktop.ini
+.idea/
+.vscode/
+*.swp
